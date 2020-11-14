@@ -151,7 +151,7 @@
                 </Style>
             </Image.Style>
         </Image>
-        <!--Remake By GreenWolf-->
+        <!--Remade By GreenWolf-->
         <TextBlock            
             FontFamily="{StaticResource mainFont}"
             FontSize="24"
