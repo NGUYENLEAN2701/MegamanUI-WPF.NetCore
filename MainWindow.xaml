@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MegamanUI_WPF.NetCore"
+        xmlns:local="clr-namespace:MegamanUI_WPF.NetCore" 
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="CanMinimize"
@@ -761,7 +762,7 @@
                                         <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}"
                                                                 KeyTime="0:0:0"/>
                                         <DiscreteObjectKeyFrame Value="{x:Static Visibility.Hidden}"
-                                                                KeyTime="0:0:1"/>
+                                                                KeyTime="0:0:2"/>
                                     </ObjectAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
