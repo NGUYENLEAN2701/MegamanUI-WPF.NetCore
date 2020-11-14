@@ -1,4 +1,5 @@
-﻿<Window x:Class="MegamanUI_WPF.NetCore.MainWindow"
+﻿<Window x:Name="Megaman_MainWindow" 
+        x:Class="MegamanUI_WPF.NetCore.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,8 +10,6 @@
         WindowStyle="None"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Height="350" 
-        Width="550"
         Topmost="True"
         KeyDown="Window_KeyDown">
     <Window.Background>
@@ -747,7 +746,8 @@
         <Image Source="\Images\splash-screen-kteam.png"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Stretch="None">
+                Stretch="None"
+                x:Uid="ImageIntro">
             <Image.Style>
                 <Style TargetType="Image">
                     <Setter Property="Visibility"
@@ -772,4 +772,34 @@
             </Image.Style>
         </Image>
     </Grid>
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="Height"
+                    Value="560"></Setter>
+            <Setter Property="Width"
+                    Value="870"></Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Height"
+                                From="560" To="350"
+                                BeginTime="0:0:2"
+                                Duration="0:0:0"/>
+                        </Storyboard>                        
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Width"
+                                From="870" To="550"
+                                BeginTime="0:0:2.01"
+                                Duration="0:0:0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
 </Window>
