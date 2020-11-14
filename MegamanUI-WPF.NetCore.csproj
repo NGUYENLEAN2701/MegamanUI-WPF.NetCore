@@ -2,9 +2,171 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>MegamanUI_WPF.NetCore</RootNamespace>
     <UseWPF>true</UseWPF>
+    <AssemblyName>MegamanUI</AssemblyName>
+    <Authors>KimLong</Authors>
+    <Company>HowKteam</Company>
+    <Copyright>Copyright by HowKteam 2020</Copyright>
+    <ApplicationIcon>icon\icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="font\HP-Yard Regular.ttf" />
+    <None Remove="icon\icon.ico" />
+    <None Remove="Images\-.png" />
+    <None Remove="Images\alert-box-kteam.png" />
+    <None Remove="Images\bg-kteam.png" />
+    <None Remove="Images\FullLife\0%25-FullLife-kteam.png" />
+    <None Remove="Images\FullLife\100%25-FullLife-kteam.png" />
+    <None Remove="Images\FullLife\40%25-FullLife-kteam.png" />
+    <None Remove="Images\FullLife\50%25-FullLife-kteam.png" />
+    <None Remove="Images\FullLife\60%25-FullLife-kteam.png" />
+    <None Remove="Images\FullLife\70%25-FullLife-kteam.png" />
+    <None Remove="Images\FullLife\80%25-FullLife-kteam.png" />
+    <None Remove="Images\FullLife\90%25-FullLife-kteam.png" />
+    <None Remove="Images\Imotal\0%25-imotal-kteam.png" />
+    <None Remove="Images\Imotal\10%25-imotal-kteam.png" />
+    <None Remove="Images\Imotal\20%25-imotal-kteam.png" />
+    <None Remove="Images\Imotal\30%25-imotal-kteam.png" />
+    <None Remove="Images\Imotal\40%25-imotal-kteam.png" />
+    <None Remove="Images\Imotal\50%25-imotal-kteam.png" />
+    <None Remove="Images\Imotal\60%25-imotal-kteam.png" />
+    <None Remove="Images\Imotal\70%25-imotal-kteam.png" />
+    <None Remove="Images\kteam-logo.png" />
+    <None Remove="Images\Megaman-Gaea-Armor-Kteam.png" />
+    <None Remove="Images\Megaman-Kteam.png" />
+    <None Remove="Images\megaman-logo-kteam.png" />
+    <None Remove="Images\OneHitBoss\OneHitBoss-active-kteam.png" />
+    <None Remove="Images\OneHitBoss\OneHitBoss-kteam.png" />
+    <None Remove="Images\OneHitCreep\OneHitCreep-Active-kteam.png" />
+    <None Remove="Images\OneHitCreep\OneHitCreep-kteam.png" />
+    <None Remove="Images\splash-screen-kteam.png" />
+    <None Remove="Images\x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="font\HP-Yard Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icon\icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\-.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\alert-box-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\bg-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\0%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\100%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\40%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\50%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\60%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\70%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\80%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FullLife\90%-FullLife-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\0%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\10%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\20%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\30%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\40%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\50%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\60%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Imotal\70%-imotal-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\kteam-logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Megaman-Gaea-Armor-Kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Megaman-Kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\megaman-logo-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\OneHitBoss\OneHitBoss-active-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\OneHitBoss\OneHitBoss-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\OneHitCreep\OneHitCreep-Active-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\OneHitCreep\OneHitCreep-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\splash-screen-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\x.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 
 </Project>

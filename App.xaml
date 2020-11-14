@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:MegamanUI_WPF.NetCore"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="xaml_Resources/TriggerRes.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="xaml_Resources/BaseRes.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

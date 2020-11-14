@@ -5,8 +5,770 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegamanUI_WPF.NetCore"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Height="350" 
+        Width="550"
+        Topmost="True"
+        KeyDown="Window_KeyDown">
+    <Window.Background>
+        <ImageBrush ImageSource="Images/bg-kteam.png"></ImageBrush>
+    </Window.Background>
     <Grid>
-
+        <!--Tạo Thanh Control Bar-->
+        <DockPanel 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            Height="25"
+            LastChildFill="False"
+            PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown">
+            <Image DockPanel.Dock="Right"
+                   Source="Images/x.png"
+                   Cursor="Hand"
+                   Margin="0 0 8 0"
+                   PreviewMouseDown="Image_PreviewMouseDown_Close">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" 
+                                Value="12"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Setter Property="Width" 
+                                        Value="15"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image DockPanel.Dock="Right"
+                   Source="Images/-.png"
+                   Cursor="Hand"
+                   Margin="0 0 8 0"
+                   PreviewMouseDown="Image_PreviewMouseDown_Minimize">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" 
+                                Value="12"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Setter Property="Width" 
+                                        Value="15"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </DockPanel>
+        <Image 
+            Source="\Images\megaman-logo-kteam.png"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Cursor="Hand"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown_Logo">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Height" 
+                                Value="30"></Setter>
+                    <Setter Property="Margin" 
+                                Value="30 5 0 0"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                            <Setter Property="Height" 
+                                        Value="35"></Setter>
+                            <Setter Property="Margin" 
+                                Value="23 0 0 0"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image 
+            Source="\Images\kteam-logo.png"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Cursor="Hand"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown_Kteam">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Height" 
+                                Value="35"></Setter>
+                    <Setter Property="Margin" 
+                                Value="0 0 35 10"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                            <Setter Property="Height" 
+                                        Value="40"></Setter>
+                            <Setter Property="Margin" 
+                                Value="0 0 30 5"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <!--IsInjected-->
+        <Image            
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Cursor="Hand"
+            Height="230"
+            MouseEnter="Image_MouseEnter_Megaman_Center"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown_Megaman_Center">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" 
+                            Value="\Images\Megaman-Kteam.png"></Setter>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition 
+                                    Binding="{Binding IsInjected}"
+                                    Value="True"></Condition>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Source" 
+                                    Value="\Images\Megaman-Gaea-Armor-Kteam.png"></Setter>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition 
+                                    Binding="{Binding IsInjected}"
+                                    Value="False"></Condition>
+                                <Condition 
+                                    Binding="{Binding RelativeSource={RelativeSource Mode=Self}, 
+                                                      Path=IsMouseOver}"
+                                    Value="True"></Condition>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Source" 
+                                    Value="\Images\Megaman-Gaea-Armor-Kteam.png"></Setter>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <!--Remake By GreenWolf-->
+        <TextBlock            
+            FontFamily="{StaticResource mainFont}"
+            FontSize="24"
+            Foreground="Green"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            Background="Transparent"            
+            Width="304"
+            Margin="0 0 0 2"
+            TextAlignment="Center"
+            MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_Author">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" 
+                            Value="Remade by GREEN WOLF"></Setter>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition 
+                                    Binding="{Binding RelativeSource={RelativeSource Mode=Self}, 
+                                                      Path=IsMouseOver}"
+                                    Value="False"></Condition>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource RemadeStoryStart}"></BeginStoryboard>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource RemadeStoryStop}"></BeginStoryboard>
+                            </MultiDataTrigger.ExitActions>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <!--One Hit Creep-->
+        <Grid
+            Cursor="Hand"
+            Height="110"
+            Width="134"
+            Margin="-280 -110 0 0"
+            MouseEnter="Image_MouseEnter_OneHitCreep"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown_OneHitCreep">
+            <Image 
+                Stretch="Fill">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Source"
+                                Value="\Images\OneHitCreep\OneHitCreep-kteam.png"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitCreep}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Source" 
+                                        Value="\Images\OneHitCreep\OneHitCreep-Active-kteam.png"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitCreep}"
+                                        Value="False"></Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Source" 
+                                        Value="\Images\OneHitCreep\OneHitCreep-Active-kteam.png"></Setter>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <TextBlock            
+                FontFamily="{StaticResource mainFont}"
+                FontSize="20"                
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                TextAlignment="Center"                
+                TextWrapping="Wrap"
+                Height="60"
+                Width="80"
+                Margin="14 5 0 0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" 
+                            Value="One Hit Creep"></Setter>
+                        <Setter Property="Foreground"
+                            Value="Gray"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitCreep}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="LightBlue"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitCreep}"
+                                        Value="False"></Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="LightBlue"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                    Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                    Value="False"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OneHitCreepStoryStart}"></BeginStoryboard>
+                                </MultiDataTrigger.EnterActions>
+                                <MultiDataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OneHitCreepStoryStop}"></BeginStoryboard>
+                                </MultiDataTrigger.ExitActions>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <!--One Hit Boss-->
+        <Grid
+            Cursor="Hand"
+            Height="130"
+            Width="180"
+            Margin="270 -100 0 0"
+            MouseEnter="Image_MouseEnter_OneHitBoss"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown_OneHitBoss">
+            <Image 
+                Stretch="Fill">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Source"
+                                Value="\Images\OneHitBoss\OneHitBoss-kteam.png"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitBoss}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Source" 
+                                        Value="\Images\OneHitBoss\OneHitBoss-active-kteam.png"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitBoss}"
+                                        Value="False"></Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Source" 
+                                        Value="\Images\OneHitBoss\OneHitBoss-active-kteam.png"></Setter>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <TextBlock            
+                FontFamily="{StaticResource mainFont}"
+                FontSize="15"                
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                TextAlignment="Center"                
+                TextWrapping="Wrap"
+                Height="40"
+                Width="54"
+                Margin="80 45 0 0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" 
+                            Value="One Hit
+                                Boss"></Setter>
+                        <Setter Property="Foreground"
+                            Value="Gray"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitBoss}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="Red"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsOneHitBoss}"
+                                        Value="False"></Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="Red"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                    Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                    Value="False"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OneHitBossStoryStart}"></BeginStoryboard>
+                                </MultiDataTrigger.EnterActions>
+                                <MultiDataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OneHitBossStoryStop}"></BeginStoryboard>
+                                </MultiDataTrigger.ExitActions>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <!--Full Life-->
+        <Grid
+            Cursor="Hand"
+            Height="75"
+            Width="148"
+            Margin="-280 120 0 0"
+            MouseEnter="Image_MouseEnter_FullLife"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown_FullLife">
+            <!--<Image
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Source"
+                                Value="\Images\FullLife\100%-FullLife-kteam.png"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsFullLife}"
+                                         Value="False">
+                                    </Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="False">
+                                    </Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeFalseOut}"></BeginStoryboard>
+                                </MultiDataTrigger.EnterActions>
+                                <MultiDataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeFalseIn}"></BeginStoryboard>
+                                </MultiDataTrigger.ExitActions>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsFullLife}"
+                                         Value="True">
+                                    </Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="True">
+                                    </Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeTrueIn}"></BeginStoryboard>
+                                </MultiDataTrigger.EnterActions>
+                                <MultiDataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeTrueOut}"></BeginStoryboard>
+                                </MultiDataTrigger.ExitActions>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>-->
+            <Image
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Visibility" 
+                                Value="Visible"></Setter>
+                        <Setter Property="Source"
+                                Value="\Images\FullLife\100%-FullLife-kteam.png"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsFullLife}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Hidden"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="False">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeFalseOut}"></BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeFalseIn}"></BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Visibility" 
+                                Value="Hidden"></Setter>
+                        <Setter Property="Source"
+                                Value="\Images\FullLife\0%-FullLife-kteam.png"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsFullLife}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="False">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeTrueOut}"></BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeTrueIn}"></BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <TextBlock            
+                FontFamily="{StaticResource mainFont}"
+                FontSize="22"                
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                TextAlignment="Left"                
+                TextWrapping="Wrap"
+                Margin="1 0 0 0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" 
+                            Value="Full Life"></Setter>
+                        <Setter Property="Foreground"
+                            Value="Gray"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsFullLife}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="#f300c6"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsFullLife}"
+                                        Value="False"></Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="#f300c6"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="False"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeStoryStart}"></BeginStoryboard>
+                                </MultiDataTrigger.EnterActions>
+                                <MultiDataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FullLifeStoryStop}"></BeginStoryboard>
+                                </MultiDataTrigger.ExitActions>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <!--Imotal-->
+        <Grid
+            Cursor="Hand"
+            Height="50"
+            Width="130"
+            Margin="290 195 0 0"
+            MouseEnter="Image_MouseEnter_Imotal"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown_Imotal">
+            <Image
+                HorizontalAlignment="Center"
+                VerticalAlignment="Stretch">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Visibility" 
+                                Value="Visible"></Setter>
+                        <Setter Property="Source"
+                                Value="\Images\Imotal\70%-imotal-kteam.png"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsImotal}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Hidden"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="False">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ImotalFalseOut}"></BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ImotalFalseIn}"></BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image
+                HorizontalAlignment="Center"
+                VerticalAlignment="Stretch">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Visibility" 
+                                Value="Hidden"></Setter>
+                        <Setter Property="Source"
+                                Value="\Images\Imotal\0%-imotal-kteam.png"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsImotal}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="False">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ImotalTrueOut}"></BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ImotalTrueIn}"></BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <TextBlock            
+                FontFamily="{StaticResource mainFont}"
+                FontSize="16"                
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Background="Transparent"
+                TextAlignment="Right"                
+                TextWrapping="Wrap"
+                Height="21"
+                Width="52"
+                Margin="0 0 4 7">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" 
+                            Value="Imotal"></Setter>
+                        <Setter Property="Foreground"
+                            Value="Gray"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsImotal}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="#f15a24"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                        Binding="{Binding IsImotal}"
+                                        Value="False"></Condition>
+                                    <Condition 
+                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}"
+                                        Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="#f15a24"></Setter>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition 
+                                    Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                    Value="False"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ImotalStoryStart}"></BeginStoryboard>
+                                </MultiDataTrigger.EnterActions>
+                                <MultiDataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ImotalStoryStop}"></BeginStoryboard>
+                                </MultiDataTrigger.ExitActions>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <!--Bảng Thông Báo-->
+        <Grid
+            Visibility="{Binding IsExitShow}">
+            <Grid.Background>
+                <SolidColorBrush 
+                    Color="Blue" 
+                    Opacity="0.3">
+                </SolidColorBrush>
+            </Grid.Background>
+            <Grid
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="180"
+                Width="300">
+                <Image 
+                    Source="\Images\alert-box-kteam.png"
+                    Stretch="Fill"
+                    Opacity="0.8">
+                </Image>
+                <TextBlock 
+                    Text="ARE YOU SURE 
+                          YOU WANT TO QUIT?"
+                    FontSize="28"
+                    FontFamily="{StaticResource mainFont}"
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Foreground="#f15a24"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 -10 0 0 ">
+                </TextBlock>
+                <TextBlock
+                    Text="YES"
+                    FontFamily="{StaticResource mainFont}"
+                    TextAlignment="Center"
+                    Foreground="#f15a24"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="10 0 0 8 "
+                    Cursor="Hand"
+                    MouseEnter="TextBlock_MouseEnter_YesExit"
+                    MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_YesExit">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize"
+                                    Value="28"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="FontSize"
+                                            Value="40"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock
+                    Text="NO"
+                    FontFamily="{StaticResource mainFont}"
+                    TextAlignment="Center"
+                    Foreground="#f15a24"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0 0 10 8 "
+                    Cursor="Hand"
+                    MouseEnter="TextBlock_MouseEnter_NoExit"
+                    MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_NoExit">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize"
+                                    Value="28"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="FontSize"
+                                            Value="40"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Grid>
+        <!--<Image Source="\Images\splash-screen-kteam.png"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Stretch="None">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Visibility"
+                                Value="Visible">
+                    </Setter>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Window.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames
+                                        Storyboard.TargetProperty="Visibility">
+                                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}"
+                                                                KeyTime="0:0:0"/>
+                                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Hidden}"
+                                                                KeyTime="0:0:1"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>-->
     </Grid>
 </Window>
