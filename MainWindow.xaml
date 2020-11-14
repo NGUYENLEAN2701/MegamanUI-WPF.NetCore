@@ -743,7 +743,7 @@
                 </TextBlock>
             </Grid>
         </Grid>
-        <!--<Image Source="\Images\splash-screen-kteam.png"
+        <Image Source="\Images\splash-screen-kteam.png"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Stretch="None">
@@ -769,6 +769,6 @@
                     </Style.Triggers>
                 </Style>
             </Image.Style>
-        </Image>-->
+        </Image>
     </Grid>
 </Window>
