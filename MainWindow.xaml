@@ -776,7 +776,7 @@
                                         <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}"
                                                                 KeyTime="0:0:0"/>
                                         <DiscreteObjectKeyFrame Value="{x:Static Visibility.Hidden}"
-                                                                KeyTime="0:0:2"/>
+                                                                KeyTime="0:0:1"/>
                                     </ObjectAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -800,7 +800,7 @@
                             <DoubleAnimation
                                 Storyboard.TargetProperty="Height"
                                 From="560" To="350"
-                                BeginTime="0:0:2"
+                                BeginTime="0:0:1"
                                 Duration="0:0:0"/>
                         </Storyboard>
                     </BeginStoryboard>
@@ -809,7 +809,7 @@
                             <DoubleAnimation
                                 Storyboard.TargetProperty="Width"
                                 From="870" To="550"
-                                BeginTime="0:0:2.01"
+                                BeginTime="0:0:1.01"
                                 Duration="0:0:0"/>
                         </Storyboard>
                     </BeginStoryboard>
