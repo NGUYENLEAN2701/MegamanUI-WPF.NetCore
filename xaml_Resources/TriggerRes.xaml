@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:MegamanUI_WPF.NetCore.xaml_Resources">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <KeyTime x:Key="frame0">0:0:0</KeyTime>
     <KeyTime x:Key="frame1">0:0:0.1</KeyTime>
     <KeyTime x:Key="frame2">0:0:0.2</KeyTime>
