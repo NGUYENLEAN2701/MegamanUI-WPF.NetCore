@@ -32,17 +32,30 @@ namespace MegamanUI_WPF.NetCore
         }
 
         #region properties
-        private bool _IsInjected;
-        public bool IsInjected
+
+
+        private string _MessagesText;
+        public string MessagesText
         {
-            get => _IsInjected;
+            get => _MessagesText;
             set
             {
-                _IsInjected = value;
+                _MessagesText = value;
                 OnPropertyChanged();
             }
         }
 
+
+        private Visibility _IsOkShow;
+        public Visibility IsOkShow
+        {
+            get => _IsOkShow;
+            set
+            {
+                _IsOkShow = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Visibility _IsExitShow;
         public Visibility IsExitShow
@@ -51,6 +64,28 @@ namespace MegamanUI_WPF.NetCore
             set
             {
                 _IsExitShow = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _IsMessagesShow;
+        public Visibility IsMessagesShow
+        {
+            get => _IsMessagesShow;
+            set
+            {
+                _IsMessagesShow = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _IsInjected;
+        public bool IsInjected
+        {
+            get => _IsInjected;
+            set
+            {
+                _IsInjected = value;
                 OnPropertyChanged();
             }
         }
@@ -99,9 +134,21 @@ namespace MegamanUI_WPF.NetCore
             }
         }
 
+        private bool _IsSound;
+        public bool IsSound
+        {
+            get => _IsSound;
+            set
+            {
+                _IsSound = value;
+                OnPropertyChanged();
+            }
+        }
+
         SoundPlayer sp_active;
-        SoundPlayer sp_hover;
         SoundPlayer sp_active_all;
+        SoundPlayer sp_hover;
+        SoundPlayer sp_hover3;
         #endregion
 
         public MainWindow()
@@ -117,8 +164,12 @@ namespace MegamanUI_WPF.NetCore
         #region methods
         void FirstLoad()
         {
+            IsSound = true;
             IsInjected = false;
+            IsOkShow = Visibility.Hidden;
             IsExitShow = Visibility.Hidden;
+            IsMessagesShow = Visibility.Hidden;
+            MessagesText = "ALL ACTIVATE...!";
             LoadSound();
         }
 
@@ -126,8 +177,15 @@ namespace MegamanUI_WPF.NetCore
         {
             sp_active = new SoundPlayer(Properties.Resources.hover_2);
             sp_hover = new SoundPlayer(Properties.Resources.hover);
+            sp_hover3 = new SoundPlayer(Properties.Resources.hover_3);
             sp_active_all = new SoundPlayer(Properties.Resources.megaman);
-
+        }
+        void MuteSound()
+        {
+            sp_active = new SoundPlayer(Properties.Resources.Silent);
+            sp_hover = new SoundPlayer(Properties.Resources.Silent);
+            sp_hover3 = new SoundPlayer(Properties.Resources.Silent);
+            sp_active_all = new SoundPlayer(Properties.Resources.Silent);
         }
         void PlaySoundActive()
         {
@@ -141,6 +199,10 @@ namespace MegamanUI_WPF.NetCore
         {
             sp_hover.Play();
         }
+        void PlaySoundHover3()
+        {
+            sp_hover3.Play();
+        }
         #endregion
 
 
@@ -149,16 +211,6 @@ namespace MegamanUI_WPF.NetCore
         {
             base.OnMouseLeftButtonDown(e);
             this.DragMove();
-        }
-
-        private void Image_PreviewMouseDown_Close(object sender, MouseButtonEventArgs e)
-        {
-            IsExitShow = Visibility.Visible;
-        }
-
-        private void Image_PreviewMouseDown_Minimize(object sender, MouseButtonEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
         }
 
         private void Image_MouseLeftButtonDown_Megaman_Center(object sender, MouseButtonEventArgs e)
@@ -266,27 +318,44 @@ namespace MegamanUI_WPF.NetCore
                 IsOneHitBoss = true;
                 IsFullLife = true;
                 IsImotal = true;
-                MessageBox.Show("Active All...!");
+                MessagesText = "ALL ACTIVATE...!";
+                IsMessagesShow = Visibility.Visible;
+                IsExitShow = Visibility.Hidden;
+                IsOkShow = Visibility.Visible;
+                
 
             }
             else if (e.Key == Key.F2)
             {
-                PlaySoundActive();
+                PlaySoundHover3();
                 IsInjected = false;
                 IsOneHitCreep = false;
                 IsOneHitBoss = false;
                 IsFullLife = false;
                 IsImotal = false;
-                MessageBox.Show("Deactivate All...!");
+                MessagesText = "ALL DEACTIVATE...!";
+                IsMessagesShow = Visibility.Visible;
+                IsExitShow = Visibility.Hidden;
+                IsOkShow = Visibility.Visible;
             }
         }
 
-
-
-
-
-
         #endregion
+
+        private void Image_PreviewMouseDown_Close(object sender, MouseButtonEventArgs e)
+        {
+            PlaySoundActive();
+            MessagesText = "ARE YOU SURE\nYOU WANT TO QUIT?";
+            IsMessagesShow = Visibility.Visible;
+            IsExitShow = Visibility.Visible;
+            IsOkShow = Visibility.Hidden;
+        }
+
+        private void Image_PreviewMouseDown_Minimize(object sender, MouseButtonEventArgs e)
+        {
+            PlaySoundActive();
+            WindowState = WindowState.Minimized;
+        }
 
         private void TextBlock_MouseLeftButtonDown_YesExit(object sender, MouseButtonEventArgs e)
         {
@@ -297,7 +366,9 @@ namespace MegamanUI_WPF.NetCore
         private void TextBlock_MouseLeftButtonDown_NoExit(object sender, MouseButtonEventArgs e)
         {
             PlaySoundActive();
+            IsOkShow = Visibility.Hidden;
             IsExitShow = Visibility.Hidden;
+            IsMessagesShow = Visibility.Hidden;
         }
 
         private void TextBlock_MouseEnter_YesExit(object sender, MouseEventArgs e)
@@ -308,6 +379,14 @@ namespace MegamanUI_WPF.NetCore
         private void TextBlock_MouseEnter_NoExit(object sender, MouseEventArgs e)
         {
             PlaySoundHover();
+        }
+
+        private void Image_PreviewMouseDown_MuteSound(object sender, MouseButtonEventArgs e)
+        {
+            IsSound = !IsSound;
+            if (IsSound) LoadSound();
+            else MuteSound();
+            PlaySoundActive();
         }
     }
 }

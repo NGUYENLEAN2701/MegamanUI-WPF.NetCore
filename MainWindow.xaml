@@ -62,6 +62,39 @@
                     </Style>
                 </Image.Style>
             </Image>
+            <Image DockPanel.Dock="Right"
+                   Cursor="Hand"
+                   Margin="0 0 0 0"
+                   PreviewMouseDown="Image_PreviewMouseDown_MuteSound">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Source" 
+                                Value="Images/SilentSound/OnSound.PNG">
+                        </Setter>
+                        <Setter Property="Height" 
+                                Value="20"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSound}"
+                                         Value="True">
+                                <Setter Property="Source"
+                                        Value="Images/SilentSound/OnSound.PNG">
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsSound}"
+                                         Value="false">
+                                <Setter Property="Source"
+                                        Value="Images/SilentSound/OffSound.PNG">
+                                </Setter>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Setter Property="Height" 
+                                        Value="25"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </DockPanel>
         <Image 
             Source="\Images\megaman-logo-kteam.png"
@@ -161,6 +194,7 @@
             Width="304"
             Margin="0 0 0 2"
             TextAlignment="Center"
+            Cursor="Hand"
             MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_Author">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -384,54 +418,6 @@
             Margin="-280 120 0 0"
             MouseEnter="Image_MouseEnter_FullLife"
             MouseLeftButtonDown="Image_MouseLeftButtonDown_FullLife">
-            <!--<Image
-                VerticalAlignment="Top"
-                HorizontalAlignment="Stretch">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Source"
-                                Value="\Images\FullLife\100%-FullLife-kteam.png"></Setter>
-                        <Style.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition 
-                                        Binding="{Binding IsFullLife}"
-                                         Value="False">
-                                    </Condition>
-                                    <Condition 
-                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
-                                        Value="False">
-                                    </Condition>
-                                </MultiDataTrigger.Conditions>
-                                <MultiDataTrigger.EnterActions>
-                                    <BeginStoryboard Storyboard="{StaticResource FullLifeFalseOut}"></BeginStoryboard>
-                                </MultiDataTrigger.EnterActions>
-                                <MultiDataTrigger.ExitActions>
-                                    <BeginStoryboard Storyboard="{StaticResource FullLifeFalseIn}"></BeginStoryboard>
-                                </MultiDataTrigger.ExitActions>
-                            </MultiDataTrigger>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition 
-                                        Binding="{Binding IsFullLife}"
-                                         Value="True">
-                                    </Condition>
-                                    <Condition 
-                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
-                                        Value="True">
-                                    </Condition>
-                                </MultiDataTrigger.Conditions>
-                                <MultiDataTrigger.EnterActions>
-                                    <BeginStoryboard Storyboard="{StaticResource FullLifeTrueIn}"></BeginStoryboard>
-                                </MultiDataTrigger.EnterActions>
-                                <MultiDataTrigger.ExitActions>
-                                    <BeginStoryboard Storyboard="{StaticResource FullLifeTrueOut}"></BeginStoryboard>
-                                </MultiDataTrigger.ExitActions>
-                            </MultiDataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>-->
             <Image
                 VerticalAlignment="Top"
                 HorizontalAlignment="Stretch">
@@ -662,7 +648,7 @@
         </Grid>
         <!--Bảng Thông Báo-->
         <Grid
-            Visibility="{Binding IsExitShow}">
+            Visibility="{Binding IsMessagesShow}">
             <Grid.Background>
                 <SolidColorBrush 
                     Color="Blue" 
@@ -680,8 +666,7 @@
                     Opacity="0.8">
                 </Image>
                 <TextBlock 
-                    Text="ARE YOU SURE 
-                          YOU WANT TO QUIT?"
+                    Text="{Binding MessagesText}"
                     FontSize="28"
                     FontFamily="{StaticResource mainFont}"
                     TextWrapping="Wrap"
@@ -700,6 +685,7 @@
                     VerticalAlignment="Bottom"
                     Margin="10 0 0 8 "
                     Cursor="Hand"
+                    Visibility="{Binding IsExitShow}"
                     MouseEnter="TextBlock_MouseEnter_YesExit"
                     MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_YesExit">
                     <TextBlock.Style>
@@ -725,6 +711,33 @@
                     VerticalAlignment="Bottom"
                     Margin="0 0 10 8 "
                     Cursor="Hand"
+                    Visibility="{Binding IsExitShow}"
+                    MouseEnter="TextBlock_MouseEnter_NoExit"
+                    MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_NoExit">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize"
+                                    Value="28"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="FontSize"
+                                            Value="40"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock
+                    Text="OK"
+                    FontFamily="{StaticResource mainFont}"
+                    TextAlignment="Center"
+                    Foreground="#f15a24"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="0 0 0 30 "
+                    Cursor="Hand"
+                    Visibility="{Binding IsOkShow}"
                     MouseEnter="TextBlock_MouseEnter_NoExit"
                     MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_NoExit">
                     <TextBlock.Style>
@@ -743,6 +756,7 @@
                 </TextBlock>
             </Grid>
         </Grid>
+        <!--Image Intro-->
         <Image Source="\Images\splash-screen-kteam.png"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
@@ -772,6 +786,7 @@
             </Image.Style>
         </Image>
     </Grid>
+    <!--Window Intro-->
     <Window.Style>
         <Style TargetType="Window">
             <Setter Property="Height"
@@ -787,7 +802,7 @@
                                 From="560" To="350"
                                 BeginTime="0:0:2"
                                 Duration="0:0:0"/>
-                        </Storyboard>                        
+                        </Storyboard>
                     </BeginStoryboard>
                     <BeginStoryboard>
                         <Storyboard>

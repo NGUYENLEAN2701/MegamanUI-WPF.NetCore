@@ -1,0 +1,48 @@
+﻿<Image
+    VerticalAlignment="Top"
+    orizontalAlignment="Stretch">
+    <Image.Style>
+        <Style TargetType="Image">
+            <Setter Property="Source"
+                            Value="\Images\FullLife\100%-FullLife-kteam.png"></Setter>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition 
+                                    Binding="{Binding IsFullLife}"
+                                        Value="False">
+                        </Condition>
+                        <Condition 
+                                    Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                    Value="False">
+                        </Condition>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource FullLifeFalseOut}"></BeginStoryboard>
+                    </MultiDataTrigger.EnterActions>
+                    <MultiDataTrigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource FullLifeFalseIn}"></BeginStoryboard>
+                    </MultiDataTrigger.ExitActions>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition 
+                                    Binding="{Binding IsFullLife}"
+                                        Value="True">
+                        </Condition>
+                        <Condition 
+                                    Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=IsMouseOver}"
+                                    Value="True">
+                        </Condition>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource FullLifeTrueIn}"></BeginStoryboard>
+                    </MultiDataTrigger.EnterActions>
+                    <MultiDataTrigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource FullLifeTrueOut}"></BeginStoryboard>
+                    </MultiDataTrigger.ExitActions>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Image.Style>
+</Image>

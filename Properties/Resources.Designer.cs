@@ -95,5 +95,14 @@ namespace MegamanUI_WPF.NetCore.Properties {
                 return ResourceManager.GetStream("megaman", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Silent {
+            get {
+                return ResourceManager.GetStream("Silent", resourceCulture);
+            }
+        }
     }
 }

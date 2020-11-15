@@ -42,6 +42,8 @@
     <None Remove="Images\OneHitBoss\OneHitBoss-kteam.png" />
     <None Remove="Images\OneHitCreep\OneHitCreep-Active-kteam.png" />
     <None Remove="Images\OneHitCreep\OneHitCreep-kteam.png" />
+    <None Remove="Images\SilentSound\OffSound.PNG" />
+    <None Remove="Images\SilentSound\OnSound.PNG" />
     <None Remove="Images\splash-screen-kteam.png" />
     <None Remove="Images\x.png" />
   </ItemGroup>
@@ -132,6 +134,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\OneHitCreep\OneHitCreep-kteam.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SilentSound\OffSound.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SilentSound\OnSound.PNG">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\splash-screen-kteam.png">
