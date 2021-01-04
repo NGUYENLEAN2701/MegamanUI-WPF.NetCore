@@ -322,7 +322,7 @@ namespace MegamanUI_WPF.NetCore
                 IsMessagesShow = Visibility.Visible;
                 IsExitShow = Visibility.Hidden;
                 IsOkShow = Visibility.Visible;
-                
+
 
             }
             else if (e.Key == Key.F2)
