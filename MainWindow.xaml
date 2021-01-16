@@ -16,7 +16,7 @@
         <ImageBrush ImageSource="Images/bg-kteam.png"></ImageBrush>
     </Window.Background>
     <Grid>
-        <!--Tạo Thanh Control Bar-->
+        <!--Tạo Thanh Control Bar ver2-->
         <DockPanel 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top"
